@@ -66,7 +66,7 @@ class Canvas
      * @param $string caminho da imagem a ser carregada [opcional]
      * @return void
      **/
-    private function __construct($origem = '')
+    public function __construct($origem = '')
     {
 
         $this->origem = $origem;
@@ -395,6 +395,8 @@ class Canvas
     {
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($this->nova_largura, $this->nova_altura);
+        imagealphablending($this->img_temp, false);
+        imagesavealpha  ( $this->img_temp , true );
 
         imagecopyresampled($this->img_temp, $this->img, 0, 0, 0, 0, $this->nova_largura, $this->nova_altura, $this->largura, $this->altura);
         $this->img = $this->img_temp;
@@ -419,6 +421,9 @@ class Canvas
     {
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($this->nova_largura, $this->nova_altura);
+
+        imagealphablending($this->img_temp, false);
+        imagesavealpha  ( $this->img_temp , true );
 
         // adiciona cor de fundo à nova imagem
         $this->preencheImagem();
@@ -468,6 +473,9 @@ class Canvas
 
         // cria imagem de destino temporária
         $this->img_temp = imagecreatetruecolor($dif_w, $dif_h);
+
+        imagealphablending($this->img_temp, false);
+        imagesavealpha  ( $this->img_temp , true );
 
         // Resample
         imagecopyresampled($this->img_temp, $this->img, 0, 0, 0, 0, $dif_w, $dif_h, $this->largura, $this->altura);
